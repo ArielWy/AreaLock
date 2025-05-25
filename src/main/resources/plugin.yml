@@ -1,0 +1,4 @@
+name: AreaLock
+version: '1.0-SNAPSHOT'
+main: me.olios.plugins.areaLock.AreaLock
+api-version: '1.21'
