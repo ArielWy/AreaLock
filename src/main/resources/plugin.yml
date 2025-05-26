@@ -2,3 +2,15 @@ name: AreaLock
 version: '1.0-SNAPSHOT'
 main: me.olios.plugins.areaLock.AreaLock
 api-version: '1.21'
+commands:
+  arealock:
+    aliases:
+      - lock
+      - al
+    description: Main command for the AreaLock plugin.
+    usage: /<command> <subcommand>
+    permission: AreaLock.admin.commands
+
+permissions:
+    AreaLock.*:
+      default: op
