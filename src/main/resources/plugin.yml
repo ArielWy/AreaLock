@@ -5,7 +5,7 @@ api-version: '1.21'
 commands:
   arealock:
     aliases:
-      - lock
+      - area
       - al
     description: Main command for the AreaLock plugin.
     usage: /<command> <subcommand>

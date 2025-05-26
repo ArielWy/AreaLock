@@ -1,12 +1,17 @@
-package me.olios.plugins.areaLock.handler
+package me.olios.plugins.areaLock.handlers
 
 import me.olios.plugins.areaLock.data.DataHandler
-import me.olios.plugins.areaLock.data.PlayerData
 import org.bukkit.Location
 import java.util.*
-import java.util.concurrent.ConcurrentHashMap
 
 class SelectionHandler {
+
+    fun setLatestSelection(playerUUID: UUID, location: Location) {
+        val latest = DataHandler.getIsPos1First(playerUUID)
+
+        if (latest == true) setSelectionPos2(playerUUID, location)
+        else setSelectionPos1(playerUUID, location)
+    }
 
     fun setSelectionPos1(playerUUID: UUID, location: Location) {
         DataHandler.setSelectionPos1(playerUUID, location)

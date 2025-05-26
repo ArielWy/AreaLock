@@ -1,14 +1,28 @@
 package me.olios.plugins.areaLock
 
+import me.olios.plugins.areaLock.commands.AreaLockCommand
+import me.olios.plugins.areaLock.commands.SubCommandManager
+import me.olios.plugins.areaLock.commands.subcommands.AreaNewCommand
+import me.olios.plugins.areaLock.commands.subcommands.AreaSelectCommand
 import org.bukkit.plugin.java.JavaPlugin
 
 class AreaLock : JavaPlugin() {
 
-    override fun onEnable() {
-        // Plugin startup logic
+    companion object {
+        // define the plugin instance
+        private lateinit var instance: AreaLock
+        fun getInstance() = instance
     }
 
-    override fun onDisable() {
-        // Plugin shutdown logic
+    override fun onEnable() {
+        instance = this
+        saveConfig()
+    }
+
+    fun registerCommands() {
+        getCommand("arealock")?.setExecutor(AreaLockCommand())
+
+        SubCommandManager.registerCommand("select", AreaSelectCommand())
+        SubCommandManager.registerCommand("new", AreaNewCommand())
     }
 }
