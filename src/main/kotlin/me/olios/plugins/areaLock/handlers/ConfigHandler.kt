@@ -29,15 +29,26 @@ class ConfigHandler {
         config.set("$areaPath.type", blockType)
         saveLocation(loc1, "$areaPath.pos1")
         saveLocation(loc2, "$areaPath.pos2")
+
+        saveConfig()
     }
 
     private fun saveLocation(loc: Location, path: String) {
         val x = loc.x.toInt()
-        val y = loc.x.toInt()
-        val z = loc.x.toInt()
+        val y = loc.y.toInt()
+        val z = loc.z.toInt()
 
-        config.set(path, x)
-        config.set(path, y)
-        config.set(path, z)
+        config.set("$path.x", x)
+        config.set("$path.y", y)
+        config.set("$path.z", z)
     }
+
+    private fun saveConfig() {
+        try {
+            config.save(dataFile)
+        } catch (e: IOException) {
+            plugin.logger.severe("Could not save data.yml! ${e.message}")
+        }
+    }
+
 }
