@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 import java.io.IOException
 
-class ConfigHandler {
+object ConfigHandler {
     private val plugin = AreaLock.getInstance()
     private val dataFile = File(plugin.dataFolder, "data.yml")
     private val config = YamlConfiguration.loadConfiguration(dataFile)
