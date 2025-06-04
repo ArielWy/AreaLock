@@ -56,6 +56,10 @@ fun CommandSender.sendArenaCreateMessage(key: MessageKeys, name: String, blockTy
     this.sendLangMessage(key, ArenaCreateArgs(name, blockType, world))
 }
 
+fun CommandSender.sendUnknownCommandMessage(subCommand: String) {
+    this.sendLangMessage(MessageKeys.COMMAND_UNKNOWN_SUBCOMMAND, UnknownSubCommand(subCommand))
+}
+
 /**
  * Helper function for sending general info messages (from the "info" array).
  * No specific placeholders are expected for the "info" array itself,

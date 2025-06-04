@@ -1,5 +1,7 @@
 package me.olios.plugins.areaLock.utils.chat
 
+import me.olios.plugins.areaLock.commands.SubCommand
+
 
 // Converts the placeholder arguments into a map suitable for LangManager.
 sealed interface MessagePlaceholderArgs {
@@ -26,6 +28,11 @@ data class ArenaCreateArgs(val name: String, val blockType: String, val world: S
     )
 }
 
+data class UnknownSubCommand(val subCommand: String): MessagePlaceholderArgs {
+    override fun toMap(): Map<String, String> = mapOf(
+        "subcommand" to subCommand
+    )
+}
 
 // A placeholder type for messages that do not require any dynamic replacements.
 data object NoArgs : MessagePlaceholderArgs {

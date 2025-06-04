@@ -6,6 +6,9 @@ enum class MessageKeys(val path: String) {
     VERSION("version"),
     INFO("info"), // This is an array, handled by getStringList
 
+    // commands
+    COMMAND_UNKNOWN_SUBCOMMAND("commands.unknown_subcommand"),
+
     // Arena Selection Commands
     COMMANDS_ARENA_SELECTION_SUCCESS_POS1("commands.arena_selection.success_pos1"),
     COMMANDS_ARENA_SELECTION_SUCCESS_POS2("commands.arena_selection.success_pos2"),

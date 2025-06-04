@@ -5,6 +5,7 @@
     "<gold>GitHub: <click:open_url:'https://github.com/ArielWy'><blue>https://github.com/ArielWy</blue></click></gold>"
   ],
   "commands": {
+    "unknown_subcommand": "<yellow>⚠ Unknown subcommand: {subcommand}</yellow>",
     "arena_selection": {
       "success_pos1": "<green>✔ Selection position 1 set successfully at [{posX}, {posY}, {posZ}]</green>",
       "success_pos2": "<green>✔ Selection position 2 set successfully at [{posX}, {posY}, {posZ}]</green>",
