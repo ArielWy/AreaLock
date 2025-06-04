@@ -47,11 +47,11 @@ class AreaSelectCommand: SubCommand {
 
 
 
-    fun debugMessage(sender: Player) {
-        val handler = DataHandler
+    private fun debugMessage(sender: Player) {
+        val handler = SelectionHandler
         val uuid = sender.uniqueId
-        sender.sendMessage("pos1 = ${handler.getSelectionPos1(uuid)}")
-        sender.sendMessage("pos2 = ${handler.getSelectionPos2(uuid)}")
+        sender.sendMessage("pos1 = ${handler.getStringPos1(uuid)}")
+        sender.sendMessage("pos2 = ${handler.getStringPos2(uuid)}")
     }
 
 }
