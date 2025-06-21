@@ -4,6 +4,7 @@ import me.olios.plugins.areaLock.commands.AreaLockCommand
 import me.olios.plugins.areaLock.commands.SubCommandManager
 import me.olios.plugins.areaLock.commands.subcommands.AreaCreateCommand
 import me.olios.plugins.areaLock.commands.subcommands.AreaSelectCommand
+import me.olios.plugins.areaLock.listeners.ChunkPacketListener
 import org.bukkit.plugin.java.JavaPlugin
 
 class AreaLock : JavaPlugin() {
@@ -18,6 +19,8 @@ class AreaLock : JavaPlugin() {
         instance = this
 
         registerCommands()
+
+        ChunkPacketListener().register()
     }
 
     private fun registerCommands() {

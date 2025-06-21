@@ -2,33 +2,48 @@ package me.olios.plugins.areaLock.commands.subcommands
 
 import me.olios.plugins.areaLock.commands.SubCommand
 import me.olios.plugins.areaLock.data.DataHandler
-import me.olios.plugins.areaLock.handlers.ConfigHandler
+import me.olios.plugins.areaLock.configs.DataConfigManager
 import me.olios.plugins.areaLock.utils.Validator
-import org.apache.commons.lang3.Validate
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
 class AreaCreateCommand: SubCommand {
     override fun execute(sender: CommandSender, args: Array<out String>): Boolean {
-        if (sender !is Player) return false
+        if (sender !is Player) {
+            sender.sendMessage("§cThis command can only be used by players.")
+            return true
+        }
 
-        if (args.size < 2) return false
+        if (args.size < 2) {
+            sender.sendMessage("§cUsage: /al create <name> <blockType>")
+            return true
+        }
 
         val playerUUID = sender.uniqueId
         val name = args[0]
         val blockType = args[1]
-        val pos1: Location = DataHandler.getSelectionPos1(playerUUID) ?: return false
-        val pos2: Location = DataHandler.getSelectionPos2(playerUUID) ?: return false
+
+        val pos1 = DataHandler.getSelectionPos1(playerUUID)
+        val pos2 = DataHandler.getSelectionPos2(playerUUID)
+
+        if (pos1 == null || pos2 == null) {
+            sender.sendMessage("§cYou must select two positions first with /al select 1 and 2.")
+            return true
+        }
+
+        if (!Validator.validateArea(pos1, pos2, blockType)) {
+            sender.sendMessage("§cInvalid region or block type.")
+            return true
+        }
+
         val world = pos1.world.name
+        DataConfigManager.saveArea(name, world, blockType, pos1, pos2)
 
-        if (!Validator.validateArea(pos1, pos2, blockType)) return false
-
-        ConfigHandler.saveArea(name, world, blockType, pos1, pos2)
-
+        sender.sendMessage("§aRegion '$name' saved successfully.")
         return true
     }
+
 
     override fun tabComplete(sender: CommandSender, args: Array<out String>): List<String> {
         if (args.size == 2)
