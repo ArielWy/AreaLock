@@ -6,7 +6,7 @@ import me.olios.plugins.areaLock.handlers.SelectionHandler
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class AreaSelectCommand: SubCommand {
+class SelectCommand: SubCommand {
     override fun execute(sender: CommandSender, args: Array<out String>): Boolean {
         if (sender !is Player) return false
 

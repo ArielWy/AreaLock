@@ -8,7 +8,7 @@ import org.bukkit.Material
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class AreaCreateCommand: SubCommand {
+class CreateCommand: SubCommand {
     override fun execute(sender: CommandSender, args: Array<out String>): Boolean {
         if (sender !is Player) {
             sender.sendMessage("§cThis command can only be used by players.")
