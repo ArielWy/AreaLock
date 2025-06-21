@@ -22,7 +22,7 @@ object RegionChunkHandler {
             // If the area intersects with this chunk
             if (area.containsChunk(chunkX, chunkZ)) {
                 val permission = "arealock.region.$name"
-                if (player.hasPermission(permission)) return // don't send fake blocks if it has permission
+                if (player.hasPermission(permission) || !ViewModeHandler.isEnabled(player.uniqueId)) return // don't send fake blocks
 
                 Bukkit.getScheduler().runTaskLater(plugin, Runnable {
                     sendFakeBlocks(player, area) }, 2L) // Delay by 2 ticks

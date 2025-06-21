@@ -5,6 +5,7 @@ import me.olios.plugins.areaLock.commands.SubCommandManager
 import me.olios.plugins.areaLock.commands.subcommands.AreaCreateCommand
 import me.olios.plugins.areaLock.commands.subcommands.AreaListCommand
 import me.olios.plugins.areaLock.commands.subcommands.AreaSelectCommand
+import me.olios.plugins.areaLock.commands.subcommands.ViewCommand
 import me.olios.plugins.areaLock.listeners.ChunkPacketListener
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -30,5 +31,6 @@ class AreaLock : JavaPlugin() {
         SubCommandManager.registerCommand("select", AreaSelectCommand())
         SubCommandManager.registerCommand("create", AreaCreateCommand())
         SubCommandManager.registerCommand("list", AreaListCommand())
+        SubCommandManager.registerCommand("view", ViewCommand())
     }
 }
