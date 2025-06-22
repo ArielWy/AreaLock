@@ -1,8 +1,7 @@
 package me.olios.plugins.areaLock.commands.subcommands
 
 import me.olios.plugins.areaLock.commands.SubCommand
-import me.olios.plugins.areaLock.data.DataHandler
-import me.olios.plugins.areaLock.handlers.SelectionHandler
+import me.olios.plugins.areaLock.selection.SelectionHandler
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 

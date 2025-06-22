@@ -1,4 +1,4 @@
-package me.olios.plugins.areaLock.handlers
+package me.olios.plugins.areaLock.selection
 
 import java.util.*
 

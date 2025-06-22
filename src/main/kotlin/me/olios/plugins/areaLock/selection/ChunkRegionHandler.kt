@@ -1,14 +1,14 @@
-package me.olios.plugins.areaLock.handlers
+package me.olios.plugins.areaLock.selection
 
 import me.olios.plugins.areaLock.AreaLock
 import me.olios.plugins.areaLock.configs.DataConfigManager
-import me.olios.plugins.areaLock.configs.RegionData
+import me.olios.plugins.areaLock.data.Region
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
-object RegionChunkHandler {
+object ChunkRegionHandler {
     private val plugin = AreaLock.getInstance()
 
     fun reloadChunks(player: Player) {
@@ -60,7 +60,7 @@ object RegionChunkHandler {
         }
     }
 
-    private fun sendFakeBlocks(player: Player, area: RegionData) {
+    private fun sendFakeBlocks(player: Player, area: Region) {
         // iterate over all blocks in the region and send block change packets
         val world = Bukkit.getWorld(area.world) ?: return
 

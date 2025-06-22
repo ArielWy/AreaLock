@@ -1,6 +1,7 @@
 package me.olios.plugins.areaLock.configs
 
 import me.olios.plugins.areaLock.AreaLock
+import me.olios.plugins.areaLock.data.Region
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.configuration.file.FileConfiguration
@@ -46,7 +47,7 @@ object DataConfigManager {
         }
     }
 
-    fun getRegion(key: String): RegionData? {
+    fun getRegion(key: String): Region? {
         val base = "area.$key"
 
         val world = config.getString("$base.world") ?: return null
@@ -55,12 +56,12 @@ object DataConfigManager {
         val pos1 = getLocation("$base.pos1", world) ?: return null
         val pos2 = getLocation("$base.pos2", world) ?: return null
 
-        return RegionData(world, type, pos1, pos2)
+        return Region(world, type, pos1, pos2)
     }
 
 
-    fun getAllRegions(): Map<String, RegionData> {
-        val regions = mutableMapOf<String, RegionData>()
+    fun getAllRegions(): Map<String, Region> {
+        val regions = mutableMapOf<String, Region>()
 
         val areaSection = config.getConfigurationSection("area") ?: return regions
         for (key in areaSection.getKeys(false)) {
@@ -71,7 +72,7 @@ object DataConfigManager {
             val pos1 = getLocation("$base.pos1", world) ?: continue
             val pos2 = getLocation("$base.pos2", world) ?: continue
 
-            regions[key] = RegionData(world, type, pos1, pos2)
+            regions[key] = Region(world, type, pos1, pos2)
         }
 
         return regions

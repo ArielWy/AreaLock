@@ -1,8 +1,8 @@
-package me.olios.plugins.areaLock.configs
+package me.olios.plugins.areaLock.data
 
 import org.bukkit.Location
 
-data class RegionData(
+data class Region(
     val world: String,
     val type: String,
     val pos1: Location,

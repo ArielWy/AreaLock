@@ -6,7 +6,7 @@ import com.comphenix.protocol.events.ListenerPriority
 import com.comphenix.protocol.events.PacketAdapter
 import com.comphenix.protocol.events.PacketEvent
 import me.olios.plugins.areaLock.AreaLock
-import me.olios.plugins.areaLock.handlers.RegionChunkHandler
+import me.olios.plugins.areaLock.selection.ChunkRegionHandler
 import org.bukkit.entity.Player
 
 class ChunkPacketListener {
@@ -23,7 +23,7 @@ class ChunkPacketListener {
                     val chunkX = packet.integers.read(0)
                     val chunkZ = packet.integers.read(1)
 
-                    RegionChunkHandler.handleChunkLoad(
+                    ChunkRegionHandler.handleChunkLoad(
                         player,
                         chunkX,
                         chunkZ,

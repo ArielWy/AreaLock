@@ -2,8 +2,8 @@ package me.olios.plugins.areaLock.commands.subcommands
 
 import me.olios.plugins.areaLock.commands.SubCommand
 import me.olios.plugins.areaLock.configs.DataConfigManager
-import me.olios.plugins.areaLock.data.DataHandler
-import me.olios.plugins.areaLock.handlers.RegionChunkHandler
+import me.olios.plugins.areaLock.data.PlayerDataHandler
+import me.olios.plugins.areaLock.selection.ChunkRegionHandler
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
@@ -43,7 +43,7 @@ class EditCommand : SubCommand {
                 }
                 if (configManager.renameRegion(regionName, newValue)) {
                     sender.sendMessage("§aRegion renamed to '$newValue'.")
-                    RegionChunkHandler.reloadChunks(sender)
+                    ChunkRegionHandler.reloadChunks(sender)
                 }
                 else {
                     sender.sendMessage("§cRegion with name '$newValue' already exists.")
@@ -52,7 +52,7 @@ class EditCommand : SubCommand {
             }
 
             "pos1" -> {
-                val pos = if (newValue != null) parseCoordinates(newValue) else DataHandler.getSelectionPos1(uuid)
+                val pos = if (newValue != null) parseCoordinates(newValue) else PlayerDataHandler.getSelectionPos1(uuid)
                 if (pos == null) {
                     sender.sendMessage("§cInvalid or missing position 1.")
                     return true
@@ -62,7 +62,7 @@ class EditCommand : SubCommand {
             }
 
             "pos2" -> {
-                val pos = if (newValue != null) parseCoordinates(newValue) else DataHandler.getSelectionPos2(uuid)
+                val pos = if (newValue != null) parseCoordinates(newValue) else PlayerDataHandler.getSelectionPos2(uuid)
                 if (pos == null) {
                     sender.sendMessage("§cInvalid or missing position 2.")
                     return true

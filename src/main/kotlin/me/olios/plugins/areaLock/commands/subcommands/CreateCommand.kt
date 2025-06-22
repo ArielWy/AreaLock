@@ -1,9 +1,9 @@
 package me.olios.plugins.areaLock.commands.subcommands
 
 import me.olios.plugins.areaLock.commands.SubCommand
-import me.olios.plugins.areaLock.data.DataHandler
+import me.olios.plugins.areaLock.data.PlayerDataHandler
 import me.olios.plugins.areaLock.configs.DataConfigManager
-import me.olios.plugins.areaLock.handlers.RegionChunkHandler
+import me.olios.plugins.areaLock.selection.ChunkRegionHandler
 import me.olios.plugins.areaLock.utils.Validator
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
@@ -25,8 +25,8 @@ class CreateCommand: SubCommand {
         val name = args[0]
         val blockType = args[1]
 
-        val pos1 = DataHandler.getSelectionPos1(playerUUID)
-        val pos2 = DataHandler.getSelectionPos2(playerUUID)
+        val pos1 = PlayerDataHandler.getSelectionPos1(playerUUID)
+        val pos2 = PlayerDataHandler.getSelectionPos2(playerUUID)
 
         if (pos1 == null || pos2 == null) {
             sender.sendMessage("§cYou must select two positions first with /al select 1 and 2.")
@@ -42,7 +42,7 @@ class CreateCommand: SubCommand {
         DataConfigManager.saveArea(name, world, blockType, pos1, pos2)
 
         sender.sendMessage("§aRegion '$name' saved successfully.")
-        RegionChunkHandler.reloadChunks(sender)
+        ChunkRegionHandler.reloadChunks(sender)
         return true
     }
 

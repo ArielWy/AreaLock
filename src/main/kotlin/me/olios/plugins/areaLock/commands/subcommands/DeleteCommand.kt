@@ -2,7 +2,7 @@ package me.olios.plugins.areaLock.commands.subcommands
 
 import me.olios.plugins.areaLock.commands.SubCommand
 import me.olios.plugins.areaLock.configs.DataConfigManager
-import me.olios.plugins.areaLock.handlers.RegionChunkHandler
+import me.olios.plugins.areaLock.selection.ChunkRegionHandler
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
@@ -29,7 +29,7 @@ class DeleteCommand() : SubCommand {
 
         if (configManager.deleteRegion(regionName)) {
             sender.sendMessage("§aRegion '$regionName' has been deleted successfully.")
-            if (sender is Player) RegionChunkHandler.reloadChunks(sender)
+            if (sender is Player) ChunkRegionHandler.reloadChunks(sender)
         } else {
             sender.sendMessage("§cFailed to delete region '$regionName'.")
         }

@@ -1,13 +1,13 @@
-package me.olios.plugins.areaLock.handlers
+package me.olios.plugins.areaLock.selection
 
-import me.olios.plugins.areaLock.data.DataHandler
+import me.olios.plugins.areaLock.data.PlayerDataHandler
 import org.bukkit.Location
 import java.util.*
 
 object SelectionHandler {
 
     fun setLatestSelection(playerUUID: UUID, location: Location): Boolean {
-        val latest = DataHandler.getIsPos1First(playerUUID)
+        val latest = PlayerDataHandler.getIsPos1First(playerUUID)
 
         if (latest == true) setPos2(playerUUID, location)
         else setPos1(playerUUID, location)
@@ -15,22 +15,22 @@ object SelectionHandler {
     }
 
     fun setPos1(playerUUID: UUID, location: Location) {
-        DataHandler.setSelectionPos1(playerUUID, location)
-        DataHandler.setIsPos1First(playerUUID, true)
+        PlayerDataHandler.setSelectionPos1(playerUUID, location)
+        PlayerDataHandler.setIsPos1First(playerUUID, true)
     }
 
     fun setPos2(playerUUID: UUID, location: Location) {
-        DataHandler.setSelectionPos2(playerUUID, location)
-        DataHandler.setIsPos1First(playerUUID, false)
+        PlayerDataHandler.setSelectionPos2(playerUUID, location)
+        PlayerDataHandler.setIsPos1First(playerUUID, false)
     }
 
     fun getStringPos1(playerUUID: UUID): String {
-        val loc = DataHandler.getSelectionPos1(playerUUID)
+        val loc = PlayerDataHandler.getSelectionPos1(playerUUID)
         return "[${loc?.x}, ${loc?.y}, ${loc?.z}]"
     }
 
     fun getStringPos2(playerUUID: UUID): String {
-        val loc = DataHandler.getSelectionPos2(playerUUID)
+        val loc = PlayerDataHandler.getSelectionPos2(playerUUID)
         return "[${loc?.x}, ${loc?.y}, ${loc?.z}]"
     }
 }
