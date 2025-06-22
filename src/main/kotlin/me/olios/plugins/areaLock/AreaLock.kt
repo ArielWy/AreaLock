@@ -30,6 +30,7 @@ class AreaLock : JavaPlugin() {
         SubCommandManager.registerCommand("list", ListCommand())
         SubCommandManager.registerCommand("view", ViewCommand())
         SubCommandManager.registerCommand("reload", ReloadCommand())
+        SubCommandManager.registerCommand("edit", EditCommand())
 
     }
 }

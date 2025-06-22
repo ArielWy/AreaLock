@@ -46,6 +46,19 @@ object DataConfigManager {
         }
     }
 
+    fun getRegion(key: String): RegionData? {
+        val base = "area.$key"
+
+        val world = config.getString("$base.world") ?: return null
+        val type = config.getString("$base.type") ?: return null
+
+        val pos1 = getLocation("$base.pos1", world) ?: return null
+        val pos2 = getLocation("$base.pos2", world) ?: return null
+
+        return RegionData(world, type, pos1, pos2)
+    }
+
+
     fun getAllRegions(): Map<String, RegionData> {
         val regions = mutableMapOf<String, RegionData>()
 
@@ -70,4 +83,38 @@ object DataConfigManager {
         val z = config.getInt("$path.z")
         return Bukkit.getWorld(world)?.let { Location(it, x.toDouble(), y.toDouble(), z.toDouble()) }
     }
+
+    fun renameRegion(regionName: String, newValue: String): Boolean {
+        val region = getRegion(regionName) ?: return false
+
+        // Save the region under the new name
+        saveArea(newValue, region.world, region.type, region.pos1, region.pos2)
+
+        // Remove the old entry
+        config.set("area.$regionName", null)
+        saveConfig()
+
+        return true
+    }
+
+    fun editRegion(
+        name: String,
+        world: String? = null,
+        type: String? = null,
+        pos1: Location? = null,
+        pos2: Location? = null
+    ): Boolean {
+        val region = getRegion(name) ?: return false
+
+        val finalWorld = world ?: region.world
+        val finalType = type ?: region.type
+        val finalPos1 = pos1 ?: region.pos1
+        val finalPos2 = pos2 ?: region.pos2
+
+        saveArea(name, finalWorld, finalType, finalPos1, finalPos2)
+        return true
+    }
+
+
+
 }

@@ -20,21 +20,11 @@ class SelectCommand: SubCommand {
 
         if (args[0] == "1") {
             SelectionHandler.setPos1(playerUUID, pos)
-
-            // debug messages
-            sender.sendMessage("selection 1: [${sender.location.x.toInt()},${sender.location.y.toInt()}, ${sender.location.z.toInt()}]")
-            debugMessage(sender)
-
             return true
         }
 
         if (args[0] == "2") {
             SelectionHandler.setPos2(playerUUID, pos)
-
-            // debug messages
-            sender.sendMessage("selection 2: [${sender.location.x.toInt()},${sender.location.y.toInt()}, ${sender.location.z.toInt()}]")
-            debugMessage(sender)
-
             return true
         }
 
@@ -44,14 +34,4 @@ class SelectCommand: SubCommand {
     override fun tabComplete(sender: CommandSender, args: Array<out String>): List<String> {
         return if (args.size == 1) listOf("1", "2") else emptyList()
     }
-
-
-
-    fun debugMessage(sender: Player) {
-        val handler = DataHandler
-        val uuid = sender.uniqueId
-        sender.sendMessage("pos1 = ${handler.getSelectionPos1(uuid)}")
-        sender.sendMessage("pos2 = ${handler.getSelectionPos2(uuid)}")
-    }
-
 }

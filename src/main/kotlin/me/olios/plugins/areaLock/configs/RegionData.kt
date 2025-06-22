@@ -29,18 +29,4 @@ data class RegionData(
 
         return intersectsX && intersectsZ
     }
-
-    /**
-     *     fun containsChunks(chunkX: Int, chunkZ: Int): Boolean {
-     *         val blockX = chunkX shl 4
-     *         val blockZ = chunkZ shl 4
-     *
-     *         val intersectsX = blockX in minX..maxX || (blockX + 15) in minX..maxX ||
-     *                 minX in blockX..(blockX + 15) || maxX in blockX..(blockX + 15)
-     *         val intersectsZ = blockZ in minZ..maxZ || (blockZ + 15) in minZ..maxZ ||
-     *                 minZ in blockZ..(blockZ + 15) || maxZ in blockZ..(blockZ + 15)
-     *
-     *         return intersectsX && intersectsZ
-     *     }
-     */
 }
