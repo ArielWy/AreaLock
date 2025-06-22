@@ -1,0 +1,25 @@
+{
+  "author": "olios",
+  "version": "1.0 - BETA",
+  "info": [
+    "<gold>GitHub: <click:open_url:'https://github.com/ArielWy'><blue>https://github.com/ArielWy</blue></click></gold>"
+  ],
+  "commands": {
+    "unknown_subcommand": "<yellow>⚠ Unknown subcommand: {subcommand}</yellow>",
+    "arena_selection": {
+      "success_pos1": "<green>✔ Selection position 1 set successfully at [{posX}, {posY}, {posZ}]</green>",
+      "success_pos2": "<green>✔ Selection position 2 set successfully at [{posX}, {posY}, {posZ}]</green>",
+      "invalid_usage": "<red>✖ Usage: /select <1|2></red>",
+      "unknown_subcommand": "<yellow>⚠ Unknown selection subcommand. Use <white>/select <1|2></white>.</yellow>",
+      "no_permission": "<dark_red>✖ You do not have permission to use this command.</dark_red>",
+      "error_setting_pos": "<red>❌ Failed to set selection position at [{posX}, {posY}, {posZ}]. Try again.</red>"
+    },
+    "arena_create": {
+      "success": "<green>✔ Arena '{name}' created successfully with '{blockType}' in world '{world}'!</green>",
+      "invalid_usage": "<red>✖ Usage: /arena create <name> <blockType></red>",
+      "unknown_subcommand": "<yellow>⚠ Unknown arena creation command.</yellow>",
+      "no_permission": "<dark_red>✖ You do not have permission to create an arena.</dark_red>",
+      "error_creating": "<red>❌ Error creating arena '{name}' with '{blockType}' in world '{world}'. Please check your inputs.</red>"
+    }
+  }
+}
