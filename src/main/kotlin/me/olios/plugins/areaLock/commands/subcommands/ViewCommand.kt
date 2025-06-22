@@ -22,7 +22,7 @@ class ViewCommand : SubCommand {
 
         ViewModeHandler.toggle(sender.uniqueId, enable)
         sender.sendMessage("§aView mode: ${if (enable) "enabled" else "disabled"}")
-        RegionChunkHandler.checkLoadedChunks(sender)
+        RegionChunkHandler.reloadChunks(sender)
         return true
     }
 

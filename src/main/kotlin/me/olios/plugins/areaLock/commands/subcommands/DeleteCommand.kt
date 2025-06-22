@@ -29,7 +29,7 @@ class DeleteCommand() : SubCommand {
 
         if (configManager.deleteRegion(regionName)) {
             sender.sendMessage("§aRegion '$regionName' has been deleted successfully.")
-            if (sender is Player) RegionChunkHandler.checkLoadedChunks(sender)
+            if (sender is Player) RegionChunkHandler.reloadChunks(sender)
         } else {
             sender.sendMessage("§cFailed to delete region '$regionName'.")
         }

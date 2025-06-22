@@ -11,8 +11,8 @@ import org.bukkit.entity.Player
 object RegionChunkHandler {
     private val plugin = AreaLock.getInstance()
 
-    fun checkLoadedChunks(player: Player) {
-        val chunkRadius = Bukkit.getViewDistance() // or use a fixed value if needed
+    fun reloadChunks(player: Player) {
+        val chunkRadius = Bukkit.getViewDistance() // radius to load
 
         val centerChunkX = player.location.chunk.x
         val centerChunkZ = player.location.chunk.z
@@ -22,7 +22,14 @@ object RegionChunkHandler {
                 val chunkX = centerChunkX + dx
                 val chunkZ = centerChunkZ + dz
 
-                handleChunkLoad(player, chunkX, chunkZ)
+                val world = player.world
+                val chunk = world.getChunkAt(chunkX, chunkZ)
+
+                if (chunk.isLoaded) {
+                    chunk.unload(true) // unload with save
+                }
+
+                chunk.load(true) // reload
             }
         }
     }

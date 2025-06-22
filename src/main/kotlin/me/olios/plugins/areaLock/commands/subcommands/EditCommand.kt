@@ -43,7 +43,7 @@ class EditCommand : SubCommand {
                 }
                 if (configManager.renameRegion(regionName, newValue)) {
                     sender.sendMessage("§aRegion renamed to '$newValue'.")
-                    RegionChunkHandler.checkLoadedChunks(sender)
+                    RegionChunkHandler.reloadChunks(sender)
                 }
                 else {
                     sender.sendMessage("§cRegion with name '$newValue' already exists.")

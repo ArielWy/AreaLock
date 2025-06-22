@@ -42,7 +42,7 @@ class CreateCommand: SubCommand {
         DataConfigManager.saveArea(name, world, blockType, pos1, pos2)
 
         sender.sendMessage("§aRegion '$name' saved successfully.")
-        RegionChunkHandler.checkLoadedChunks(sender)
+        RegionChunkHandler.reloadChunks(sender)
         return true
     }
 
