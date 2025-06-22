@@ -115,6 +115,17 @@ object DataConfigManager {
         return true
     }
 
+    fun deleteRegion(name: String): Boolean {
+        if (!config.contains("area.$name")) return false
+        config.set("area.$name", null)
+        try {
+            config.save(dataFile)
+            return true
+        } catch (e: IOException) {
+            plugin.logger.severe("Failed to delete region '$name': ${e.message}")
+        }
+        return false
+    }
 
 
 }
