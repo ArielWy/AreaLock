@@ -3,6 +3,7 @@ package me.olios.plugins.areaLock.commands.subcommands
 import me.olios.plugins.areaLock.commands.SubCommand
 import me.olios.plugins.areaLock.data.DataHandler
 import me.olios.plugins.areaLock.configs.DataConfigManager
+import me.olios.plugins.areaLock.handlers.RegionChunkHandler
 import me.olios.plugins.areaLock.utils.Validator
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
@@ -41,6 +42,7 @@ class CreateCommand: SubCommand {
         DataConfigManager.saveArea(name, world, blockType, pos1, pos2)
 
         sender.sendMessage("§aRegion '$name' saved successfully.")
+        RegionChunkHandler.checkLoadedChunks(sender)
         return true
     }
 

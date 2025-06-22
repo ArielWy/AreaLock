@@ -1,6 +1,7 @@
 package me.olios.plugins.areaLock.commands.subcommands
 
 import me.olios.plugins.areaLock.commands.SubCommand
+import me.olios.plugins.areaLock.handlers.RegionChunkHandler
 import me.olios.plugins.areaLock.handlers.ViewModeHandler
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -21,6 +22,7 @@ class ViewCommand : SubCommand {
 
         ViewModeHandler.toggle(sender.uniqueId, enable)
         sender.sendMessage("§aView mode: ${if (enable) "enabled" else "disabled"}")
+        RegionChunkHandler.checkLoadedChunks(sender)
         return true
     }
 

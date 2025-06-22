@@ -1,6 +1,5 @@
 package me.olios.plugins.areaLock.commands
 
-import me.olios.plugins.areaLock.utils.chat.sendUnknownCommandMessage
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -13,7 +12,7 @@ class AreaLockCommand: CommandExecutor, TabCompleter {
 
         val subCommand = SubCommandManager.getCommand(args[0])
         if (subCommand == null) {
-            sender.sendUnknownCommandMessage(args[0])
+            sender.sendMessage("§cUnknown subcommand: ${args[0]}")
             return true
         }
 

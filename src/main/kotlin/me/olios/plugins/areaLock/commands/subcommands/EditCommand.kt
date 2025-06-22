@@ -3,6 +3,7 @@ package me.olios.plugins.areaLock.commands.subcommands
 import me.olios.plugins.areaLock.commands.SubCommand
 import me.olios.plugins.areaLock.configs.DataConfigManager
 import me.olios.plugins.areaLock.data.DataHandler
+import me.olios.plugins.areaLock.handlers.RegionChunkHandler
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
@@ -42,6 +43,7 @@ class EditCommand : SubCommand {
                 }
                 if (configManager.renameRegion(regionName, newValue)) {
                     sender.sendMessage("§aRegion renamed to '$newValue'.")
+                    RegionChunkHandler.checkLoadedChunks(sender)
                 }
                 else {
                     sender.sendMessage("§cRegion with name '$newValue' already exists.")

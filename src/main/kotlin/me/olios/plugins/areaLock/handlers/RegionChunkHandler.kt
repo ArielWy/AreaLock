@@ -9,7 +9,23 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 
 object RegionChunkHandler {
-    val plugin = AreaLock.getInstance()
+    private val plugin = AreaLock.getInstance()
+
+    fun checkLoadedChunks(player: Player) {
+        val chunkRadius = Bukkit.getViewDistance() // or use a fixed value if needed
+
+        val centerChunkX = player.location.chunk.x
+        val centerChunkZ = player.location.chunk.z
+
+        for (dx in -chunkRadius..chunkRadius) {
+            for (dz in -chunkRadius..chunkRadius) {
+                val chunkX = centerChunkX + dx
+                val chunkZ = centerChunkZ + dz
+
+                handleChunkLoad(player, chunkX, chunkZ)
+            }
+        }
+    }
 
     fun handleChunkLoad(player: Player, chunkX: Int, chunkZ: Int) {
         val configManager = DataConfigManager
@@ -22,7 +38,11 @@ object RegionChunkHandler {
             // If the area intersects with this chunk
             if (area.containsChunk(chunkX, chunkZ)) {
                 val permission = "arealock.region.$name"
-                if (player.hasPermission(permission) || !ViewModeHandler.isEnabled(player.uniqueId)) return // don't send fake blocks
+                if (player.hasPermission(permission)) {
+                    // don't send fake blocks if player has permission and viewMode is off
+                    if (!ViewModeHandler.isEnabled(player.uniqueId))
+                        return
+                }
 
                 Bukkit.getScheduler().runTaskLater(plugin, Runnable {
                     sendFakeBlocks(player, area) }, 2L) // Delay by 2 ticks
