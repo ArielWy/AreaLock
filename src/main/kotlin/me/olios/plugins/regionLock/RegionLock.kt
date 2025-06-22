@@ -1,16 +1,16 @@
-package me.olios.plugins.areaLock
+package me.olios.plugins.regionLock
 
-import me.olios.plugins.areaLock.commands.AreaLockCommand
-import me.olios.plugins.areaLock.commands.SubCommandManager
-import me.olios.plugins.areaLock.commands.subcommands.*
-import me.olios.plugins.areaLock.listeners.ChunkPacketListener
+import me.olios.plugins.regionLock.commands.RegionLockCommand
+import me.olios.plugins.regionLock.commands.SubCommandManager
+import me.olios.plugins.regionLock.commands.subcommands.*
+import me.olios.plugins.regionLock.listeners.ChunkPacketListener
 import org.bukkit.plugin.java.JavaPlugin
 
-class AreaLock : JavaPlugin() {
+class RegionLock : JavaPlugin() {
 
     companion object {
         // define the plugin instance
-        private lateinit var instance: AreaLock
+        private lateinit var instance: RegionLock
         fun getInstance() = instance
     }
 
@@ -23,7 +23,7 @@ class AreaLock : JavaPlugin() {
     }
 
     private fun registerCommands() {
-        getCommand("arealock")?.setExecutor(AreaLockCommand())
+        getCommand("RegionLock")?.setExecutor(RegionLockCommand())
 
         SubCommandManager.registerCommand("select", SelectCommand())
         SubCommandManager.registerCommand("create", CreateCommand())

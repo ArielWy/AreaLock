@@ -1,18 +1,18 @@
-package me.olios.plugins.areaLock.listeners
+package me.olios.plugins.regionLock.listeners
 
 import com.comphenix.protocol.PacketType
 import com.comphenix.protocol.ProtocolLibrary
 import com.comphenix.protocol.events.ListenerPriority
 import com.comphenix.protocol.events.PacketAdapter
 import com.comphenix.protocol.events.PacketEvent
-import me.olios.plugins.areaLock.AreaLock
-import me.olios.plugins.areaLock.selection.ChunkRegionHandler
+import me.olios.plugins.regionLock.RegionLock
+import me.olios.plugins.regionLock.selection.ChunkRegionHandler
 import org.bukkit.entity.Player
 
 class ChunkPacketListener {
 
     fun register() {
-        val plugin = AreaLock.getInstance()
+        val plugin = RegionLock.getInstance()
 
         // listen for chunk load by the player
         ProtocolLibrary.getProtocolManager().addPacketListener(

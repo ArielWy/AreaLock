@@ -1,18 +1,18 @@
-name: AreaLock
+name: RegionLock
 version: '1.0-SNAPSHOT'
-main: me.olios.plugins.areaLock.AreaLock
+main: me.olios.plugins.regionLock.RegionLock
 api-version: '1.21'
 depend:
   - ProtocolLib
 commands:
-  arealock:
+  RegionLock:
     aliases:
-      - area
-      - al
-    description: Main command for the AreaLock plugin.
+      - region
+      - rl
+    description: Main command for the RegionLock plugin.
     usage: /<command> <subcommand>
-    permission: AreaLock.admin.commands
+    permission: RegionLock.admin.commands
 
 permissions:
-    AreaLock.*:
+    RegionLock.*:
       default: op

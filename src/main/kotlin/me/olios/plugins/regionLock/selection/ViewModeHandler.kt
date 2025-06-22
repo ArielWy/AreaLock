@@ -1,4 +1,4 @@
-package me.olios.plugins.areaLock.selection
+package me.olios.plugins.regionLock.selection
 
 import java.util.*
 

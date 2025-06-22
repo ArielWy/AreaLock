@@ -1,4 +1,4 @@
-package me.olios.plugins.areaLock.commands
+package me.olios.plugins.regionLock.commands
 
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
 
-class AreaLockCommand: CommandExecutor, TabCompleter {
+class RegionLockCommand: CommandExecutor, TabCompleter {
     override fun onCommand(sender: CommandSender, p1: Command, p2: String, args: Array<out String>): Boolean {
         if (args.isEmpty()) return false
 

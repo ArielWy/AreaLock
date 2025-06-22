@@ -1,15 +1,15 @@
-package me.olios.plugins.areaLock.selection
+package me.olios.plugins.regionLock.selection
 
-import me.olios.plugins.areaLock.AreaLock
-import me.olios.plugins.areaLock.configs.DataConfigManager
-import me.olios.plugins.areaLock.data.Region
+import me.olios.plugins.regionLock.RegionLock
+import me.olios.plugins.regionLock.configs.DataConfigManager
+import me.olios.plugins.regionLock.data.Region
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
 object ChunkRegionHandler {
-    private val plugin = AreaLock.getInstance()
+    private val plugin = RegionLock.getInstance()
 
     fun reloadChunks(player: Player) {
         val chunkRadius = Bukkit.getViewDistance() // radius to load
@@ -39,12 +39,12 @@ object ChunkRegionHandler {
         val allRegions = configManager.getAllRegions()
         val world = player.world.name
 
-        for ((name, area) in allRegions) {
-            if (area.world != world) continue
+        for ((name, region) in allRegions) {
+            if (region.world != world) continue
 
-            // If the area intersects with this chunk
-            if (area.containsChunk(chunkX, chunkZ)) {
-                val permission = "arealock.region.$name"
+            // If the region intersects with this chunk
+            if (region.containsChunk(chunkX, chunkZ)) {
+                val permission = "RegionLock.region.$name"
                 if (player.hasPermission(permission)) {
                     // don't send fake blocks if player has permission and viewMode is off
                     if (!ViewModeHandler.isEnabled(player.uniqueId))
@@ -52,23 +52,23 @@ object ChunkRegionHandler {
                 }
 
                 Bukkit.getScheduler().runTaskLater(plugin, Runnable {
-                    sendFakeBlocks(player, area) }, 2L) // Delay by 2 ticks
+                    sendFakeBlocks(player, region) }, 2L) // Delay by 2 ticks
 
                 player.world.getChunkAt(chunkX, chunkZ).load() // load the chunk if not loaded
-                sendFakeBlocks(player, area) // send fake blocks
+                sendFakeBlocks(player, region) // send fake blocks
             }
         }
     }
 
-    private fun sendFakeBlocks(player: Player, area: Region) {
+    private fun sendFakeBlocks(player: Player, region: Region) {
         // iterate over all blocks in the region and send block change packets
-        val world = Bukkit.getWorld(area.world) ?: return
+        val world = Bukkit.getWorld(region.world) ?: return
 
-        for (x in area.minX..area.maxX) {
-            for (y in area.minY..area.maxY) {
-                for (z in area.minZ..area.maxZ) {
+        for (x in region.minX..region.maxX) {
+            for (y in region.minY..region.maxY) {
+                for (z in region.minZ..region.maxZ) {
                     val loc = Location(world, x.toDouble(), y.toDouble(), z.toDouble())
-                    player.sendBlockChange(loc, Material.valueOf(area.type).createBlockData())
+                    player.sendBlockChange(loc, Material.valueOf(region.type).createBlockData())
                 }
             }
         }

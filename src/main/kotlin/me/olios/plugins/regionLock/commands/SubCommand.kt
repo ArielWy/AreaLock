@@ -1,4 +1,4 @@
-package me.olios.plugins.areaLock.commands
+package me.olios.plugins.regionLock.commands
 
 import org.bukkit.command.CommandSender
 

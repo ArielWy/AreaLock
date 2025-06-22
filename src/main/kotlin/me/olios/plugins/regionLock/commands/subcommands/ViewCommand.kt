@@ -1,8 +1,8 @@
-package me.olios.plugins.areaLock.commands.subcommands
+package me.olios.plugins.regionLock.commands.subcommands
 
-import me.olios.plugins.areaLock.commands.SubCommand
-import me.olios.plugins.areaLock.selection.ChunkRegionHandler
-import me.olios.plugins.areaLock.selection.ViewModeHandler
+import me.olios.plugins.regionLock.commands.SubCommand
+import me.olios.plugins.regionLock.selection.ChunkRegionHandler
+import me.olios.plugins.regionLock.selection.ViewModeHandler
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 

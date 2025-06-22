@@ -1,6 +1,6 @@
-package me.olios.plugins.areaLock.selection
+package me.olios.plugins.regionLock.selection
 
-import me.olios.plugins.areaLock.data.PlayerDataHandler
+import me.olios.plugins.regionLock.data.PlayerDataHandler
 import org.bukkit.Location
 import java.util.*
 

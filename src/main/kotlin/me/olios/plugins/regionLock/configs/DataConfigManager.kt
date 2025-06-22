@@ -1,7 +1,7 @@
-package me.olios.plugins.areaLock.configs
+package me.olios.plugins.regionLock.configs
 
-import me.olios.plugins.areaLock.AreaLock
-import me.olios.plugins.areaLock.data.Region
+import me.olios.plugins.regionLock.RegionLock
+import me.olios.plugins.regionLock.data.Region
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.configuration.file.FileConfiguration
@@ -10,7 +10,7 @@ import java.io.File
 import java.io.IOException
 
 object DataConfigManager {
-    private val plugin = AreaLock.getInstance()
+    private val plugin = RegionLock.getInstance()
     private val dataFile = File(plugin.dataFolder, "data.yml")
     private val config = YamlConfiguration.loadConfiguration(dataFile)
 
@@ -20,13 +20,13 @@ object DataConfigManager {
         }
     }
 
-    fun saveArea(name: String, world: String, blockType: String, loc1: Location, loc2: Location) {
-        val areaPath = "area.$name"
+    fun saveRegion(name: String, world: String, blockType: String, loc1: Location, loc2: Location) {
+        val regionPath = "region.$name"
 
-        config.set("$areaPath.world", world)
-        config.set("$areaPath.type", blockType)
-        saveLocation(loc1, "$areaPath.pos1")
-        saveLocation(loc2, "$areaPath.pos2")
+        config.set("$regionPath.world", world)
+        config.set("$regionPath.type", blockType)
+        saveLocation(loc1, "$regionPath.pos1")
+        saveLocation(loc2, "$regionPath.pos2")
 
         saveConfig()
     }
@@ -48,7 +48,7 @@ object DataConfigManager {
     }
 
     fun getRegion(key: String): Region? {
-        val base = "area.$key"
+        val base = "region.$key"
 
         val world = config.getString("$base.world") ?: return null
         val type = config.getString("$base.type") ?: return null
@@ -63,9 +63,9 @@ object DataConfigManager {
     fun getAllRegions(): Map<String, Region> {
         val regions = mutableMapOf<String, Region>()
 
-        val areaSection = config.getConfigurationSection("area") ?: return regions
-        for (key in areaSection.getKeys(false)) {
-            val base = "area.$key"
+        val regionSection = config.getConfigurationSection("region") ?: return regions
+        for (key in regionSection.getKeys(false)) {
+            val base = "region.$key"
             val world = config.getString("$base.world") ?: continue
             val type = config.getString("$base.type") ?: continue
 
@@ -89,10 +89,10 @@ object DataConfigManager {
         val region = getRegion(regionName) ?: return false
 
         // Save the region under the new name
-        saveArea(newValue, region.world, region.type, region.pos1, region.pos2)
+        saveRegion(newValue, region.world, region.type, region.pos1, region.pos2)
 
         // Remove the old entry
-        config.set("area.$regionName", null)
+        config.set("region.$regionName", null)
         saveConfig()
 
         return true
@@ -112,13 +112,13 @@ object DataConfigManager {
         val finalPos1 = pos1 ?: region.pos1
         val finalPos2 = pos2 ?: region.pos2
 
-        saveArea(name, finalWorld, finalType, finalPos1, finalPos2)
+        saveRegion(name, finalWorld, finalType, finalPos1, finalPos2)
         return true
     }
 
     fun deleteRegion(name: String): Boolean {
-        if (!config.contains("area.$name")) return false
-        config.set("area.$name", null)
+        if (!config.contains("region.$name")) return false
+        config.set("region.$name", null)
         try {
             config.save(dataFile)
             return true

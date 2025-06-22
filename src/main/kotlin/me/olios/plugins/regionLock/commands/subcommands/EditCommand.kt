@@ -1,9 +1,9 @@
-package me.olios.plugins.areaLock.commands.subcommands
+package me.olios.plugins.regionLock.commands.subcommands
 
-import me.olios.plugins.areaLock.commands.SubCommand
-import me.olios.plugins.areaLock.configs.DataConfigManager
-import me.olios.plugins.areaLock.data.PlayerDataHandler
-import me.olios.plugins.areaLock.selection.ChunkRegionHandler
+import me.olios.plugins.regionLock.commands.SubCommand
+import me.olios.plugins.regionLock.configs.DataConfigManager
+import me.olios.plugins.regionLock.data.PlayerDataHandler
+import me.olios.plugins.regionLock.selection.ChunkRegionHandler
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.command.CommandSender

@@ -1,14 +1,14 @@
-package me.olios.plugins.areaLock.commands.subcommands
+package me.olios.plugins.regionLock.commands.subcommands
 
-import me.olios.plugins.areaLock.AreaLock
-import me.olios.plugins.areaLock.commands.SubCommand
+import me.olios.plugins.regionLock.RegionLock
+import me.olios.plugins.regionLock.commands.SubCommand
 import org.bukkit.command.CommandSender
 
 class ReloadCommand() : SubCommand {
-    private val plugin = AreaLock.getInstance()
+    private val plugin = RegionLock.getInstance()
     override fun execute(sender: CommandSender, args: Array<out String>): Boolean {
         plugin.reloadConfig()
-        sender.sendMessage("§aAreaLock configuration reloaded.")
+        sender.sendMessage("§aRegionLock configuration reloaded.")
         return true
     }
 

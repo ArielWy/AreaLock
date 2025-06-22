@@ -1,7 +1,7 @@
-package me.olios.plugins.areaLock.commands.subcommands
+package me.olios.plugins.regionLock.commands.subcommands
 
-import me.olios.plugins.areaLock.commands.SubCommand
-import me.olios.plugins.areaLock.selection.SelectionHandler
+import me.olios.plugins.regionLock.commands.SubCommand
+import me.olios.plugins.regionLock.selection.SelectionHandler
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 

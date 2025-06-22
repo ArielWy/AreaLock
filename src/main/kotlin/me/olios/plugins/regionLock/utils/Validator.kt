@@ -1,11 +1,11 @@
-package me.olios.plugins.areaLock.utils
+package me.olios.plugins.regionLock.utils
 
 import org.bukkit.Location
 import org.bukkit.Material
 
 object Validator {
 
-    fun validateArea(loc1: Location?, loc2: Location?, blockType: String): Boolean {
+    fun validateRegion(loc1: Location?, loc2: Location?, blockType: String): Boolean {
         return validateLocation(loc1) &&
                 validateLocation(loc2) &&
                 validateLocationsWorld(loc1!!, loc2!!) &&

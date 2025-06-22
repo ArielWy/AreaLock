@@ -1,10 +1,10 @@
-package me.olios.plugins.areaLock.commands.subcommands
+package me.olios.plugins.regionLock.commands.subcommands
 
-import me.olios.plugins.areaLock.commands.SubCommand
-import me.olios.plugins.areaLock.data.PlayerDataHandler
-import me.olios.plugins.areaLock.configs.DataConfigManager
-import me.olios.plugins.areaLock.selection.ChunkRegionHandler
-import me.olios.plugins.areaLock.utils.Validator
+import me.olios.plugins.regionLock.commands.SubCommand
+import me.olios.plugins.regionLock.data.PlayerDataHandler
+import me.olios.plugins.regionLock.configs.DataConfigManager
+import me.olios.plugins.regionLock.selection.ChunkRegionHandler
+import me.olios.plugins.regionLock.utils.Validator
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -33,13 +33,13 @@ class CreateCommand: SubCommand {
             return true
         }
 
-        if (!Validator.validateArea(pos1, pos2, blockType)) {
+        if (!Validator.validateRegion(pos1, pos2, blockType)) {
             sender.sendMessage("§cInvalid region or block type.")
             return true
         }
 
         val world = pos1.world.name
-        DataConfigManager.saveArea(name, world, blockType, pos1, pos2)
+        DataConfigManager.saveRegion(name, world, blockType, pos1, pos2)
 
         sender.sendMessage("§aRegion '$name' saved successfully.")
         ChunkRegionHandler.reloadChunks(sender)

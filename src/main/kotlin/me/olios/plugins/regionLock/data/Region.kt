@@ -1,4 +1,4 @@
-package me.olios.plugins.areaLock.data
+package me.olios.plugins.regionLock.data
 
 import org.bukkit.Location
 
