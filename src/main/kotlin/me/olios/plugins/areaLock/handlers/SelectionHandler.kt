@@ -6,11 +6,12 @@ import java.util.*
 
 object SelectionHandler {
 
-    fun setLatestSelection(playerUUID: UUID, location: Location) {
+    fun setLatestSelection(playerUUID: UUID, location: Location): Boolean {
         val latest = DataHandler.getIsPos1First(playerUUID)
 
         if (latest == true) setPos2(playerUUID, location)
         else setPos1(playerUUID, location)
+        return (latest == true)
     }
 
     fun setPos1(playerUUID: UUID, location: Location) {
